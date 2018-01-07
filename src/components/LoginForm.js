@@ -1,13 +1,13 @@
 import React from 'react'
 
-const LoginForm = ({ login, username, password, handleLoginFieldChange }) => {
+const LoginForm = ({ username, password, handleLogin, handleLoginFieldChange }) => {
     return (
         <div>
             <h2>Kirjaudu</h2>
 
-            <form onSubmit={login}>
+            <form onSubmit={handleLogin}>
                 <div>
-                    Käyttäjätunnus
+                    <label>Käyttäjätunnus</label>
                     <input type="text"
                         name="username"
                         value={username}
@@ -15,7 +15,7 @@ const LoginForm = ({ login, username, password, handleLoginFieldChange }) => {
                     />
                 </div>
                 <div>
-                    Salasana
+                    <label>Password</label>
                     <input type="password"
                         name="password"
                         value={password}

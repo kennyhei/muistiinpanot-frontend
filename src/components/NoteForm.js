@@ -1,11 +1,11 @@
 import React from 'react'
 
-const NoteForm = ({ addNote, new_note, handleNoteChange }) => {
+const NoteForm = ({ handleAddNote, new_note, handleNoteChange }) => {
     return (
         <div>
             <h2>Luo uusi muistiinpano</h2>
 
-            <form onSubmit={addNote}>
+            <form onSubmit={handleAddNote}>
                 <input value={new_note} onChange={handleNoteChange} />
                 <button type="submit">Tallenna</button>
             </form>

@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm'
 import NoteForm from './components/NoteForm'
 import noteService from './services/notes'
 import loginService from './services/login'
+import Togglable from './components/Togglable'
 
 class App extends React.Component {
     constructor(props) {
@@ -47,6 +48,8 @@ class App extends React.Component {
                 notes: this.state.notes.concat(newNote),
                 new_note: ''
             })
+
+            this.noteForm.toggleVisibility()
         })
     }
 
@@ -134,21 +137,25 @@ class App extends React.Component {
 
                 {/* If logged in, show note form, else login form */}
                 {this.state.user === null ?
-                   <LoginForm
-                        login={this.login}
-                        username={this.state.username}
-                        password={this.state.password}
-                        handleLoginFieldChange={this.handleLoginFieldChange}
-                    /> :
+                    <Togglable buttonLabel="Login">
+                        <LoginForm
+                            username={this.state.username}
+                            password={this.state.password}
+                            handleLogin={this.login}
+                            handleLoginFieldChange={this.handleLoginFieldChange}
+                        />
+                   </Togglable> :
                    <div>
                        <p>
                           {this.state.user.name} logged in <button onClick={this.logout}>Kirjaudu ulos</button>
                        </p>
-                       <NoteForm
-                            addNote={this.addNote}
-                            new_note={this.state.new_note}
-                            handleNoteChange={this.handleNoteChange}
-                        />
+                       <Togglable buttonLabel="new note" ref={component => this.noteForm = component}>
+                            <NoteForm
+                                handleAddNote={this.addNote}
+                                new_note={this.state.new_note}
+                                handleNoteChange={this.handleNoteChange}
+                            />
+                       </Togglable>
                    </div>
                 }
                 
