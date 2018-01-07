@@ -1,0 +1,30 @@
+import axios from 'axios'
+//const baseUrl = 'https://muistiinpanot-backend.herokuapp.com/api/notes'
+const baseUrl = '/api/notes'
+
+let token = null
+
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`
+}
+
+const getAll = () => {
+    const request = axios.get(baseUrl)
+    return request.then(response => response.data)
+}
+
+const create = async (newNote) => {
+    const config = {
+        headers: { 'Authorization': token }
+    }
+
+    const response = await axios.post(baseUrl, newNote, config)
+    return response.data
+}
+
+const update = (id, newNote) => {
+    const request = axios.put(`${baseUrl}/${id}`, newNote)
+    return request.then(response => response.data)
+}
+
+export default { getAll, create, update, setToken }
