@@ -1,5 +1,4 @@
 import React from 'react'
-import './LoginForm'
 
 class Togglable extends React.Component {
     constructor(props) {

@@ -15,7 +15,7 @@ const LoginForm = ({ username, password, handleLogin, handleLoginFieldChange }) 
                     />
                 </div>
                 <div>
-                    <label>Password</label>
+                    <label>Salasana</label>
                     <input type="password"
                         name="password"
                         value={password}
