@@ -168,9 +168,9 @@ class App extends React.Component {
                     </button>
                 </div>
 
-                <ul>
+                <div>
                     {items}
-                </ul>
+                </div>
             </div>
         )
     }
