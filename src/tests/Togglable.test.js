@@ -1,7 +1,9 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
+import Note from '../components/Note'
 import Togglable from '../components/Togglable'
+import jsdom from 'jsdom'
 
 describe('<Togglable />', () => {
     let togglableComponent
@@ -30,5 +32,46 @@ describe('<Togglable />', () => {
         const div = togglableComponent.find('.togglableContent')
         expect(div.getElement().props.style).to.deep.equal({ display: '' })
     })
-  
+
+    it('mount renders all components', () => {
+
+        const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
+        const oldDoc = global.document
+        const oldWindow = global.window
+
+        global.document = doc
+        global.window = doc.defaultView
+
+        const note1 = {
+            content: 'Komponenttitestaus tapahtuu mochalla ja enzymellä',
+            important: true
+        }
+
+        const note2 = {
+            content: 'mount renderöi myös alikomponentit',
+            important: true
+        }
+
+        const shallowNoteComponent = shallow(
+            <Togglable buttonLabel="show...">
+                <Note note={note1}/>
+                <Note note={note2}/>
+            </Togglable>
+        )
+
+        const mountNoteComponent = mount(
+            <Togglable buttonLabel="show...">
+                <Note note={note1}/>
+                <Note note={note2}/>
+            </Togglable>
+        )
+
+        //console.log(mountNoteComponent.debug())
+        //console.log(mountNoteComponent.html())
+
+        expect(shallowNoteComponent.html()).to.not.deep.equal(mountNoteComponent.html())
+
+        global.document = oldDoc
+        global.window = oldWindow
+    })
 })

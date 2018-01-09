@@ -151,9 +151,9 @@ class App extends React.Component {
                        </p>
                        <Togglable buttonLabel="new note" ref={component => this.noteForm = component}>
                             <NoteForm
-                                handleAddNote={this.addNote}
-                                new_note={this.state.new_note}
-                                handleNoteChange={this.handleNoteChange}
+                                onSubmit={this.addNote}
+                                value={this.state.new_note}
+                                handleChange={this.handleNoteChange}
                             />
                        </Togglable>
                    </div>
