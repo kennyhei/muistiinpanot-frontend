@@ -35,13 +35,6 @@ describe('<Togglable />', () => {
 
     it('mount renders all components', () => {
 
-        const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-        const oldDoc = global.document
-        const oldWindow = global.window
-
-        global.document = doc
-        global.window = doc.defaultView
-
         const note1 = {
             content: 'Komponenttitestaus tapahtuu mochalla ja enzymellä',
             important: true
@@ -70,8 +63,5 @@ describe('<Togglable />', () => {
         //console.log(mountNoteComponent.html())
 
         expect(shallowNoteComponent.html()).to.not.deep.equal(mountNoteComponent.html())
-
-        global.document = oldDoc
-        global.window = oldWindow
     })
 })

@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env NODE_ENV=development mocha --require ./src/setupTests.js --compilers js:babel-core/register src/tests/*.test.js",
+    "test": "cross-env NODE_ENV=development mocha -r jsdom-global/register -r ./src/setupTests.js --compilers js:babel-core/register src/tests/*.test.js",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
@@ -23,6 +23,8 @@
     "chai-spies": "^0.7.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "jsdom": "11.5.1",
+    "jsdom-global": "3.0.2",
     "mocha": "^4.1.0",
     "sinon": "^4.1.4"
   },

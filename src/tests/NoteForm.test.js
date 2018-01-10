@@ -31,16 +31,6 @@ class Wrapper extends React.Component {
 
 describe('<NoteForm />', () => {
 
-    const oldDoc = global.document
-    const oldWindow = global.window
-
-    before(() => {
-        const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-
-        global.document = doc
-        global.window = doc.defaultView
-    })
-
     it('renders content', () => {
 
         const onSubmit = sinon.spy()
@@ -57,12 +47,6 @@ describe('<NoteForm />', () => {
 
         expect(wrapper.state().formInput).to.equal('lomakkeiden testaus on hankalaa')
         sinon.assert.calledOnce(onSubmit)
-    })
-
-    after(() => {
-
-        global.document = oldDoc
-        global.window = oldWindow
     })
 })
   
