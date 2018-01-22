@@ -1,7 +1,5 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { expect } from 'chai'
-import jsdom from 'jsdom'
 import sinon from 'sinon'
 import NoteForm from '../components/NoteForm'
 
@@ -31,7 +29,7 @@ class Wrapper extends React.Component {
 
 describe('<NoteForm />', () => {
 
-    it('renders content', () => {
+    test('renders content', () => {
 
         const onSubmit = sinon.spy()
 
@@ -45,7 +43,7 @@ describe('<NoteForm />', () => {
         input.simulate('change', { target: { value: 'lomakkeiden testaus on hankalaa' } } )
         button.simulate('submit')
 
-        expect(wrapper.state().formInput).to.equal('lomakkeiden testaus on hankalaa')
+        expect(wrapper.state().formInput).toEqual('lomakkeiden testaus on hankalaa')
         sinon.assert.calledOnce(onSubmit)
     })
 })

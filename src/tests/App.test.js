@@ -1,8 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { expect } from 'chai'
 import sinon from 'sinon'
-import jsdom from 'jsdom'
 import App from '../App'
 import Note from '../components/Note'
 import noteService from '../services/notes'
@@ -45,11 +43,11 @@ const notes = [
   }
 ]
 
-/*describe('<App />', () => {
+describe.skip('<App />', () => {
 
     let app
 
-    before(() => {
+    beforeAll(() => {
 
         const noteServiceMock = sinon.mock(noteService)
         noteServiceMock.expects('getAll').returns(notes)
@@ -57,12 +55,12 @@ const notes = [
         app = mount(<App />)
     })
   
-    it('renders all notes it gets from backend', () => {
+    test('renders all notes it gets from backend', () => {
         app.update()
         const noteComponents = app.find(Note)
-        expect(noteComponents.length).to.equal(noteService.notes.length)
+        expect(noteComponents.length).toEqual(noteService.notes.length)
     })
-})*/
+})
 
 
 

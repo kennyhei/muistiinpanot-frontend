@@ -1,9 +1,7 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { expect } from 'chai'
 import Note from '../components/Note'
 import Togglable from '../components/Togglable'
-import jsdom from 'jsdom'
 
 describe('<Togglable />', () => {
     let togglableComponent
@@ -16,24 +14,24 @@ describe('<Togglable />', () => {
         )
     })
   
-    it('renders its children', () => {
-        expect(togglableComponent.contains(<div class="testDiv" />)).to.equal(true)
+    test('renders its children', () => {
+        expect(togglableComponent.contains(<div class="testDiv" />)).toEqual(true)
     })
   
-    it('at start the children are not displayed', () => {
+    test('at start the children are not displayed', () => {
         const div = togglableComponent.find('.togglableContent')
-        expect(div.getElement().props.style).to.deep.equal({ display: 'none' })
+        expect(div.getElement().props.style).toEqual({ display: 'none' })
     })
   
-    it('after clicking the button, children are displayed', () => {
+    test('after clicking the button, children are displayed', () => {
         const button = togglableComponent.find('button')
     
         button.at(0).simulate('click')
         const div = togglableComponent.find('.togglableContent')
-        expect(div.getElement().props.style).to.deep.equal({ display: '' })
+        expect(div.getElement().props.style).toEqual({ display: '' })
     })
 
-    it('mount renders all components', () => {
+    test('mount renders all components', () => {
 
         const note1 = {
             content: 'Komponenttitestaus tapahtuu mochalla ja enzymellä',
@@ -62,6 +60,6 @@ describe('<Togglable />', () => {
         //console.log(mountNoteComponent.debug())
         //console.log(mountNoteComponent.html())
 
-        expect(shallowNoteComponent.html()).to.not.deep.equal(mountNoteComponent.html())
+        expect(shallowNoteComponent.html()).not.toEqual(mountNoteComponent.html())
     })
 })
